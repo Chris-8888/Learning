@@ -1,0 +1,35 @@
+        Scanner keyboard = new Scanner(System.in);
+
+        System.out.println("\nIf you want to calculate the area of the parallelogram, ");
+
+        double sideA;
+        String answer;
+        do {
+            System.out.print("please enter the length of side A: ");
+            sideA = keyboard.nextDouble();
+
+            if (sideA <= 0) {
+                System.out.println("It can't be neither negative nor zero, try again!");
+            } else
+            {
+                System.out.print("Now enter the height, if you know it (if you don't, enter '0'): ");  //sense of this question is to calculate area not only with height, but with the length of side B and sin of an angle
+                                        //here I also wanted to ask for entering eg. "no", but it would require making condition 'if not integer' - to hard for me...
+
+                double height = keyboard.nextInt();
+                if (height > 0) {
+                    double area = sideA * height;
+                    System.out.println("The area of your parallelogram is " + area + " sq. cm.");
+                } else {
+                    System.out.print("So you have to enter the length of side B: ");
+                    double sideB = keyboard.nextDouble();
+
+                    System.out.print("And now enter any of angles (in degrees) in the parallelogram: ");
+                    double angleDegrees = keyboard.nextDouble();
+
+                    double sin = Math.sin(Math.toRadians(angleDegrees));
+                    double area = (Math.round(sideA * sideB * sin * 100) / 100.0);
+                    System.out.println("The area of the parallelogram is " + area + " sq.cm.");
+                }
+            }
+        }
+        while (sideA <= 0);
