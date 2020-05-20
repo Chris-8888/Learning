@@ -3,7 +3,7 @@
         System.out.println("\nIf you want to calculate the area of the parallelogram, ");
 
         double sideA;
-        String answer;
+        
         do {
             System.out.print("please enter the length of side A: ");
             sideA = keyboard.nextDouble();
