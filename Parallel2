@@ -1,0 +1,87 @@
+package com.chris.Trainings;
+
+import java.util.Scanner;
+
+public class Class2Para {
+
+        public static Integer getInput(Scanner keyboard){   //I don't know what 'getInput(Scanner keyboard)' is...
+                    //if I wanted to ask user for input, I'd use something like: 'Scanner keyboard = new Scanner(System.in)'
+                    //I don't know any other way of taking input from a user...
+            final String height_str = keyboard.nextLine();  //I don't know what 'final' means? Without 'final' - it seems to work too...
+            Integer height = 1;
+            try {
+                height = Integer.parseInt(height_str);
+                if (height<1){
+                    height=1; //I don't know what this line is for... Whe I comment it out (//), everything sill works fine...
+                    throw new RuntimeException("The value must be greater than zero!!!");
+                }
+            } catch (Exception e) {                //I don't quite understand... exception is caught, but nothing inside {}
+            }
+            return height;  //I haven't read about 'return' with try-catch... They always put here 'finally' (but 'finally' wouldn't work here - I checked...
+        }
+
+        public static void main(String[] args) {  //I had to use main method to run it
+        //public static void test1() {
+            Scanner keyboard = new Scanner(System.in);
+
+            System.out.println("\nIf you want to calculate the area of the parallelogram, ");
+
+            double sideA;
+
+            do {
+                System.out.print("please enter the length of side A: ");
+                sideA = keyboard.nextDouble();
+                Integer sideNrA = getInput(keyboard);
+                if (sideA <= 0) {
+                    System.out.println("It can't be neither negative nor zero, try again,");
+                } else {
+                    System.out.print("Now enter the height, if you know it (if you don't, enter '0' ar a negative number): ");
+
+//         I 'commented out' the block from '******' till '******'
+
+//            WHY?     1st: I don't understand it...
+//                     2nd: with this block (line 67 is out in this case) it doesn't work properly -
+//                       after demand from 'line 38', it takes the number, but nothing happens,
+//                       and only when the user enters one more number, he can go on... probably something is missing, but I don't know what...
+//                     3rd: when the user enters a string (eg. "aa"), red-blue exception communicate appears, so again - probably something small is missing, but I can't detect it...)
+
+//            //'******'
+//                    final String height_str = keyboard.nextLine();
+//                    Integer height = 0;
+//                    Boolean haveHeight = false;
+//                try {
+//                    height = Integer.parseInt(height_str);
+//                    haveHeight=true;
+//                } catch (Exception e) {
+//
+//                }
+//
+//                    Integer heightInt = getInput(keyboard);
+//                    Boolean haveHeightInt = height>0;
+//                    if (!haveHeight){
+//                        System.out.println("there is no height input!!!");
+//                    }
+//
+//             //'******'
+
+                    double height = keyboard.nextInt(); //line from previous version - added only when block above deleted
+                    if (height > 0) {
+                        double area = sideA * height;
+                        System.out.println("The area of your parallelogram is " + area + " sq. cm.");
+                    } else {
+                        System.out.print("So you have to enter the length of side B: ");
+                        double sideB = keyboard.nextDouble();
+
+                        System.out.print("And now enter any of angles (in degrees) in the parallelogram: ");
+                        double angleDegrees = keyboard.nextDouble();
+
+                        double sin = Math.sin(Math.toRadians(angleDegrees));
+                        double area = (Math.round(sideA * sideB * sin * 100) / 100.0);
+                        System.out.println("The area of the parallelogram is " + area + " sq.cm.");
+                    }
+                }
+            }
+            while (sideA <= 0);
+        }
+
+}
